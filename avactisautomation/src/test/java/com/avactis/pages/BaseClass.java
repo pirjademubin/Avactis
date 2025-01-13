@@ -46,7 +46,8 @@ public class BaseClass {
 	}
 	
 	@Parameters({"browser", "URL"})
-	@BeforeClass
+	//@BeforeClass
+	@BeforeMethod
 	public void setUp(String browser, String url) {
 		Reporter.log("Trying to start browser and application ready", true);
 		//driver = BrowserFactory.startApplication(driver, cp.getBrowser(), cp.getURL());
@@ -54,11 +55,11 @@ public class BaseClass {
 		Reporter.log("Browser and Application is up and running", true);
 	}
 	
-	@AfterClass
-	public void tearDown() {
-		Reporter.log("Closing the Application and browser", true);
-		BrowserFactory.quitApplication(driver);
-	}
+//	@AfterClass
+//	public void tearDown() {
+//		Reporter.log("Closing the Application and browser", true);
+//		BrowserFactory.quitApplication(driver);
+//	}
 	
 	
 	@AfterMethod
@@ -76,6 +77,8 @@ public class BaseClass {
 			logger.skip("Test Skipped", MediaEntityBuilder.createScreenCaptureFromPath(Helper.captureScreenshot(driver)).build());
 		}
 		extent.flush();
+		Reporter.log("Closing the Application and browser", true);
+		BrowserFactory.quitApplication(driver);
 		
 	}
 }
