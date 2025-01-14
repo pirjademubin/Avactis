@@ -3,6 +3,7 @@ package com.avactis.pages;
 import java.io.File;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
@@ -21,7 +22,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-public class BaseClass {
+public class BaseClass implements ITestListener{
 	
 	
 	public WebDriver driver;
@@ -30,9 +31,6 @@ public class BaseClass {
 	public static ExtentReports extent;
 	public static ExtentTest logger;
 	public static ITestResult result;
-	
-	
-	//public WebDriverWait wait;
 	
 	@BeforeSuite
 	public void setUpSuite() {
@@ -46,7 +44,6 @@ public class BaseClass {
 	}
 	
 	@Parameters({"browser", "URL"})
-	//@BeforeClass
 	@BeforeMethod
 	public void setUp(String browser, String url) {
 		Reporter.log("Trying to start browser and application ready", true);
@@ -54,12 +51,6 @@ public class BaseClass {
 		driver = BrowserFactory.startApplication(driver, browser, url);
 		Reporter.log("Browser and Application is up and running", true);
 	}
-	
-//	@AfterClass
-//	public void tearDown() {
-//		Reporter.log("Closing the Application and browser", true);
-//		BrowserFactory.quitApplication(driver);
-//	}
 	
 	
 	@AfterMethod
@@ -79,6 +70,5 @@ public class BaseClass {
 		extent.flush();
 		Reporter.log("Closing the Application and browser", true);
 		BrowserFactory.quitApplication(driver);
-		
 	}
 }
