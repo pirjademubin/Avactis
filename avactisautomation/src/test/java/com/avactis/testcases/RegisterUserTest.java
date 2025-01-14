@@ -1,14 +1,10 @@
 package com.avactis.testcases;
 
-import static org.testng.Assert.assertEquals;
-
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.avactis.pages.BaseClass;
@@ -42,15 +38,6 @@ public class RegisterUserTest extends BaseClass {
 				);
 		logger.info("Registration Function executed successfully");
 		logger.info("Checking Registartion Status...");
-//		if(objregisterPage.checkRegistrationStatus() == 1) {
-//			logger.fail("Sorry, user is already registered !!");
-//			result.setStatus(ITestResult.FAILURE);
-//		}
-//		else if(objregisterPage.checkRegistrationStatus() == 2) {
-//			logger.pass("New user has been registered successfully !!!");
-//			result.setStatus(ITestResult.SUCCESS);
-//		}
-//		logger.info("Registration Status Check completed");
 		boolean successStatus = false;
 		try {
 			successStatus = driver.findElement(By.xpath("//div[@class='note note-success']")).isDisplayed();
@@ -83,15 +70,6 @@ public class RegisterUserTest extends BaseClass {
 				);
 		logger.info("Registration Function executed successfully");
 		logger.info("Checking Registartion Status...");
-//		if(objregisterPage.checkRegistrationStatus() == 1) {
-//			logger.fail("Sorry, user is already registered !!");
-//			result.setStatus(ITestResult.FAILURE);
-//		}
-//		else if(objregisterPage.checkRegistrationStatus() == 2) {
-//			logger.pass("New user has been registered successfully !!!");
-//			result.setStatus(ITestResult.SUCCESS);
-//		}
-//		logger.info("Registration Status Check completed");
 		boolean successStatus = false;
 		try {
 			successStatus = driver.findElement(By.xpath("//div[@class='note note-success']")).isDisplayed();

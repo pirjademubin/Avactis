@@ -14,14 +14,13 @@ public class ConfigDataProvider {
 			pro = new Properties();
 			pro.load(fis);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			System.out.println("Not able to load config file" + e.getMessage());
 		}
 	}
 	
-//	public String getDataFromConfig(String keyToSearch) {
-//		return pro.getProperty(keyToSearch);
-//	}
+	public String getDataFromConfig(String keyToSearch) {
+		return pro.getProperty(keyToSearch);
+	}
 	
 	public String getBrowser() {
 		return pro.getProperty("Browser");

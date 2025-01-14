@@ -1,8 +1,5 @@
 package com.avactis.pages;
 
-import static org.testng.Assert.assertEquals;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,15 +29,5 @@ public class SignInPage extends BaseClass {
 		userPass.sendKeys(pass);
 		signInButton.click();
 		Thread.sleep(2000);
-//		String ExpectedPageHeader = "MANAGE ACCOUNT AND VIEW ORDERS";
-//		String ActualPageHeader = null;
-//		try {
-//			ActualPageHeader = driver.findElement(By.xpath("//h3[text()='Manage Account and View Orders']")).getText();
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			logger.info("Wrong Xpath" + e.getMessage());
-//			//e.printStackTrace();
-//		}
-//		assertEquals(ExpectedPageHeader, ActualPageHeader );
 	}
 }

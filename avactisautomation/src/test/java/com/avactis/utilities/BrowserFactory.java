@@ -34,13 +34,9 @@ public class BrowserFactory {
 			System.out.println("This browser is not supported");
 		}
 		
-		//driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-		//wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		driver.manage().window().maximize();
 		driver.get(url);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		//wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		//driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
 		return driver;
 	}
 	

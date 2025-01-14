@@ -47,7 +47,10 @@ public class BaseClass implements ITestListener{
 	@BeforeMethod
 	public void setUp(String browser, String url) {
 		Reporter.log("Trying to start browser and application ready", true);
+		
+		//Following is without passing parameters from TestNG Test Config
 		//driver = BrowserFactory.startApplication(driver, cp.getBrowser(), cp.getURL());
+		
 		driver = BrowserFactory.startApplication(driver, browser, url);
 		Reporter.log("Browser and Application is up and running", true);
 	}

@@ -20,7 +20,6 @@ public class Helper {
 			FileHandler.copy(src, new File(screenShotPath));
 			System.out.println("Screenshot captured successfully");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.out.println("Unable to capture screenshot" + e.getMessage());
 		}
 		return screenShotPath;
@@ -30,6 +29,5 @@ public class Helper {
 		DateFormat customFormat = new SimpleDateFormat("MM-dd-yyyy_HH_mm_ss");
 		Date currentDate = new Date();
 		return customFormat.format(currentDate);
-		
 	}
 }
