@@ -1,6 +1,8 @@
 package com.avactis.pages;
 
 import java.io.File;
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestListener;
@@ -31,6 +33,7 @@ public class BaseClass implements ITestListener{
 	public static ExtentReports extent;
 	public static ExtentTest logger;
 	public static ITestResult result;
+	public WebDriverWait wait;
 	
 	@BeforeSuite
 	public void setUpSuite() {
@@ -46,6 +49,7 @@ public class BaseClass implements ITestListener{
 	@Parameters({"browser", "URL"})
 	@BeforeMethod
 	public void setUp(String browser, String url) {
+		//wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		Reporter.log("Trying to start browser and application ready", true);
 		
 		//Following is without passing parameters from TestNG Test Config
