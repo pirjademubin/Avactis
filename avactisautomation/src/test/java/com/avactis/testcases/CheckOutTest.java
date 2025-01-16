@@ -106,6 +106,13 @@ public class CheckOutTest extends BaseClass {
 				excel.getStringData("BillingDetails", 0, 8),
 				excel.getNumericData("BillingDetails", 0, 9)
 				);
-
+		
+		objcheckoutpage.verifyItemsQuantityPrice(
+				excel.getStringData("ProductList", 2, 3),
+				excel.getStringData("ProductList", 3, 3),
+				excel.getStringData("ProductList", 4, 3)
+				);
+		
+		objcheckoutpage.placeOrder();
 	}
 }

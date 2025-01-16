@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByXPath;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -85,6 +86,12 @@ public class CheckoutPage extends BaseClass {
 	@FindBy(xpath = "//input[@value='Place Order']")
 	WebElement placeOrderButton;
 	
+	@FindBy(xpath = "//table[@class='order_items without_images']//tr")
+	WebElement tableRows;
+	
+	@FindBy(xpath = "//table[@class='order_items without_images']//th")
+	WebElement tableColumns;
+	
 	public void SearchProductsandCheckout(String productName) {
 		searchIcon.click();
 		searchInput.sendKeys(productName);
@@ -152,6 +159,31 @@ public class CheckoutPage extends BaseClass {
 		continueCheckOut2.click();
 		Thread.sleep(5000);
 		
+		//verifyItemsQuantityPrice(uitemDetails);
+		
+		
+//		placeOrderButton.click();
+//		Thread.sleep(5000);
+	}
+	
+	public void verifyItemsQuantityPrice(String item1Price, String item2Price, String item3Price) {
+		List<String> checkedItemsList = new ArrayList<>();
+		int rowCount = driver.findElements(By.xpath("//table[@class='order_items without_images']//tr")).size();
+		//int columnCount = driver.findElements(By.xpath("//table[@class='order_items without_images']//th")).size();
+		for(int i=1; i<rowCount; i++) {
+				String actVal = driver.findElement(By.xpath("//table[@class='order_items without_images']//tbody//tr["+(i+1)+"]//td[3]")).getText();
+				checkedItemsList.add(actVal);		
+		}
+		System.out.println("*****************************");
+		System.out.println(checkedItemsList.get(0));
+		if(checkedItemsList.get(0).equals(item1Price) && checkedItemsList.get(1).equals(item2Price) && checkedItemsList.get(2).equals(item3Price)) {
+			logger.info("Observed details from webpage "+ checkedItemsList.get(0)+" , "+ checkedItemsList.get(1)+" , "+ checkedItemsList.get(2) + " verified with Test Data "+ item1Price+" , "+item2Price +" , "+item3Price );
+			logger.pass("Verified, Data is correct !!");
+		}
+		
+	}
+	
+	public void placeOrder() throws InterruptedException {
 		placeOrderButton.click();
 		Thread.sleep(5000);
 	}
