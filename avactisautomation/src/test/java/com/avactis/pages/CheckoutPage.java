@@ -158,26 +158,55 @@ public class CheckoutPage extends BaseClass {
 		shippingMethod.click();
 		continueCheckOut2.click();
 		Thread.sleep(5000);
-		
-		//verifyItemsQuantityPrice(uitemDetails);
-		
-		
-//		placeOrderButton.click();
-//		Thread.sleep(5000);
 	}
 	
-	public void verifyItemsQuantityPrice(String item1Price, String item2Price, String item3Price) {
-		List<String> checkedItemsList = new ArrayList<>();
+	public void verifyItemsPrice(String item1Price, String item2Price, String item3Price) {
+		List<String> checkedItemsPriceList = new ArrayList<>();
 		int rowCount = driver.findElements(By.xpath("//table[@class='order_items without_images']//tr")).size();
 		//int columnCount = driver.findElements(By.xpath("//table[@class='order_items without_images']//th")).size();
 		for(int i=1; i<rowCount; i++) {
 				String actVal = driver.findElement(By.xpath("//table[@class='order_items without_images']//tbody//tr["+(i+1)+"]//td[3]")).getText();
+				checkedItemsPriceList.add(actVal);		
+		}
+		System.out.println("*****************************");
+		System.out.println(checkedItemsPriceList.get(0));
+		if(checkedItemsPriceList.get(0).equals(item1Price) && checkedItemsPriceList.get(1).equals(item2Price) && checkedItemsPriceList.get(2).equals(item3Price)) {
+			logger.info("Observed details from webpage "+ checkedItemsPriceList.get(0)+" , "+ checkedItemsPriceList.get(1)+" , "+ checkedItemsPriceList.get(2) + " verified with Test Data "+ item1Price+" , "+item2Price +" , "+item3Price );
+			logger.pass("Verified, Data is correct !!");
+		}
+		
+	}
+	
+	public void verifyItemNames(String item1Name, String item2Name, String item3Name) {
+		List<String> checkedItemsList = new ArrayList<>();
+		int rowCount = driver.findElements(By.xpath("//table[@class='order_items without_images']//tr")).size();
+		//int columnCount = driver.findElements(By.xpath("//table[@class='order_items without_images']//th")).size();
+		for(int i=1; i<rowCount; i++) {
+				String actVal = driver.findElement(By.xpath("//table[@class='order_items without_images']//tbody//tr["+(i+1)+"]//td[1]")).getText();
 				checkedItemsList.add(actVal);		
 		}
 		System.out.println("*****************************");
 		System.out.println(checkedItemsList.get(0));
-		if(checkedItemsList.get(0).equals(item1Price) && checkedItemsList.get(1).equals(item2Price) && checkedItemsList.get(2).equals(item3Price)) {
-			logger.info("Observed details from webpage "+ checkedItemsList.get(0)+" , "+ checkedItemsList.get(1)+" , "+ checkedItemsList.get(2) + " verified with Test Data "+ item1Price+" , "+item2Price +" , "+item3Price );
+		if(checkedItemsList.get(0).equals(item1Name) && checkedItemsList.get(1).equals(item2Name) && checkedItemsList.get(2).equals(item3Name)) {
+			logger.info("Observed details from webpage "+ checkedItemsList.get(0)+" , "+ checkedItemsList.get(1)+" , "+ checkedItemsList.get(2) + " verified with Test Data "+ item1Name+" , "+item2Name +" , "+item3Name );
+			logger.pass("Verified, Data is correct !!");
+		}
+		
+	}
+	
+	public void verifyItemQuantity(double item1Quan, double item2Quan, double item3Quan) {
+		List<Double> checkedItemsQuanList = new ArrayList<>();
+		int rowCount = driver.findElements(By.xpath("//table[@class='order_items without_images']//tr")).size();
+		//int columnCount = driver.findElements(By.xpath("//table[@class='order_items without_images']//th")).size();
+		for(int i=1; i<rowCount; i++) {
+				String actVal = driver.findElement(By.xpath("//table[@class='order_items without_images']//tbody//tr["+(i+1)+"]//td[2]")).getText();
+				checkedItemsQuanList.add(Double.valueOf(actVal));
+				System.out.println(Double.valueOf(actVal));
+		}
+		System.out.println("*****************************");
+		System.out.println(checkedItemsQuanList.get(0));
+		if(checkedItemsQuanList.get(0) == item1Quan && checkedItemsQuanList.get(1) == item2Quan && checkedItemsQuanList.get(2) == item3Quan) {
+			logger.info("Observed details from webpage "+ checkedItemsQuanList.get(0)+" , "+ checkedItemsQuanList.get(1)+" , "+ checkedItemsQuanList.get(2) + " verified with Test Data "+ item1Quan+" , "+item2Quan +" , "+item3Quan );
 			logger.pass("Verified, Data is correct !!");
 		}
 		
@@ -187,4 +216,10 @@ public class CheckoutPage extends BaseClass {
 		placeOrderButton.click();
 		Thread.sleep(5000);
 	}
+	
+	
 }
+
+
+
+
