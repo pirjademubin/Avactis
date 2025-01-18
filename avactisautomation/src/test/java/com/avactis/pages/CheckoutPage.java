@@ -92,6 +92,9 @@ public class CheckoutPage extends BaseClass {
 	@FindBy(xpath = "//table[@class='order_items without_images']//th")
 	WebElement tableColumns;
 	
+	@FindBy(xpath = "//div[@class='note note-success note-bordered']")
+	WebElement orderID;
+	
 	public void SearchProductsandCheckout(String productName) {
 		searchIcon.click();
 		searchInput.sendKeys(productName);
@@ -217,6 +220,19 @@ public class CheckoutPage extends BaseClass {
 		Thread.sleep(5000);
 	}
 	
+	public void recordOrderID() throws InterruptedException {
+		Thread.sleep(2000);
+		boolean orderStatus = orderID.isDisplayed();
+		String orderId = orderID.getText();
+		int start = orderId.indexOf(":") + 2; // Find the start of the name
+	    int end = orderId.indexOf("\n", start); // Find the end of the name
+	    String name = orderId.substring(start, end); // Extracts "John"
+	    System.out.println(name);
+		if(orderStatus) {
+			logger.info("Order ID: " + name);
+			logger.pass("Order has been placed successfully");
+		}
+	}	
 	
 }
 

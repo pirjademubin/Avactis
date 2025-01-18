@@ -124,5 +124,7 @@ public class CheckOutTest extends BaseClass {
 				);
 		
 		objcheckoutpage.placeOrder();
+		
+		objcheckoutpage.recordOrderID();
 	}
 }
