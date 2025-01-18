@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.avactis.pages.AdminPage;
 import com.avactis.pages.BaseClass;
 import com.avactis.pages.CheckoutPage;
 import com.avactis.utilities.ExcelDataProvider;
@@ -48,6 +49,7 @@ public class CheckOutTest extends BaseClass {
 		logger = extent.createTest("Avactis Positive Test");
 		logger.info("Avactis Test Has been created successfully");
 		CheckoutPage objcheckoutpage = PageFactory.initElements(driver, CheckoutPage.class);
+		AdminPage objadminpage = PageFactory.initElements(driver, AdminPage.class);
 		logger.info("Page Factory has been initialised");
 		logger.info("Starting registration process...");
 		List<Boolean> booleanList = new ArrayList<>();
@@ -126,5 +128,13 @@ public class CheckOutTest extends BaseClass {
 		objcheckoutpage.placeOrder();
 		
 		objcheckoutpage.recordOrderID();
+		
+		AdminPage.startAdminApplication(driver);
+		objadminpage.signInAdmin(
+				excel.getStringData("AdminLogin", 0, 0),
+				excel.getStringData("AdminLogin", 0, 1));
+		
+		objadminpage.verifyOrder();
+		
 	}
 }

@@ -14,6 +14,7 @@ import org.testng.Assert;
 
 public class CheckoutPage extends BaseClass {
 	WebDriver driver;
+	//public static String orderIDresult = "";
 	
 	public CheckoutPage(WebDriver ldriver) {
 		this.driver = ldriver;
@@ -217,23 +218,30 @@ public class CheckoutPage extends BaseClass {
 	
 	public void placeOrder() throws InterruptedException {
 		placeOrderButton.click();
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 	}
 	
-	public void recordOrderID() throws InterruptedException {
+	public String recordOrderID() throws InterruptedException {
+		Thread.sleep(5000);
+		boolean orderStatus = false;
+		try {
+			orderStatus = orderID.isDisplayed();
+		} catch (Exception e) {
+			System.out.println("WebElement can't be located !!");			
+		}
 		Thread.sleep(2000);
-		boolean orderStatus = orderID.isDisplayed();
 		String orderId = orderID.getText();
 		int start = orderId.indexOf(":") + 2; // Find the start of the name
 	    int end = orderId.indexOf("\n", start); // Find the end of the name
 	    String name = orderId.substring(start, end); // Extracts "John"
-	    System.out.println(name);
-		if(orderStatus) {
+        String orderIDresult = name.substring(name.indexOf('#') + 1);
+        System.out.println(orderIDresult); // Output: 00012
+		if(orderStatus == true) {
 			logger.info("Order ID: " + name);
 			logger.pass("Order has been placed successfully");
 		}
+		return orderIDresult;
 	}	
-	
 }
 
 

@@ -79,7 +79,7 @@ public class RegisterUserTest extends BaseClass {
 		Assert.assertEquals(successStatus, true);
 	}
 	
-	@Test(priority = 3)
+	@Test(priority = 4)
 	public void SignInUserPositiveTest() throws InterruptedException {
 		ExcelDataProvider excel = new ExcelDataProvider();
 		logger = extent.createTest("Avactis SignIn Positive Test");
@@ -101,7 +101,7 @@ public class RegisterUserTest extends BaseClass {
 		Assert.assertEquals(status, true);
 	}
 	
-	@Test(priority = 4)
+	@Test(priority = 3)
 	public void SignInUserNegativeTest() throws InterruptedException {
 		ExcelDataProvider excel = new ExcelDataProvider();
 		logger = extent.createTest("Avactis SignIn Negative Test");
